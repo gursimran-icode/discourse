@@ -13,7 +13,7 @@ pipeline {
     }
     stage('Prune Docker data') {
       steps {
-      
+      curl --version
       }
     }
     stage('Start container') {
@@ -29,7 +29,7 @@ pipeline {
   }
   post {
     failure {
- 
+   curl --version
     }
   }
 }
