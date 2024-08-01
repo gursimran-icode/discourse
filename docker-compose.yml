@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  web:
+    image: ubuntu:latest
+    container_name: discourse
+    restart: always
+    expose:
+      - "80"
+      - "443"
+    volumes:
+      - ./containers:/var/www/discourse
+    environment:
+      - LANG=en_US.UTF-8
+      - DISCOURSE_HOSTNAME=discourse.example.com
+      - DISCOURSE_DEVELOPER_EMAILS=discoursetest@yopmail.com
+      - DISCOURSE_SMTP_ADDRESS=smtp.zeptomail.in
+      - DISCOURSE_SMTP_PORT=587
+      - DISCOURSE_SMTP_USER_NAME=emailapikey
+      - DISCOURSE_SMTP_PASSWORD=PHtE6r0NSuzj2DYm8RgG5KS8QJT3YIl6qb5kfQYTtI0WCPcKTE0Eo9h6x2S0+Bt4AaRHE6Wcy4hs4+if5uqDdmy8NzpJVGqyqK3sx/VYSPOZsbq6x00buVgafkLUXIPsdN5j1ybRu97aNA==
+      - LETSENCRYPT_ACCOUNT_EMAIL=me@example.com
+      - MAXMIND_LICENSE_KEY=xxxxxxxxxxxxxxxx
+    networks:
+      - discourse_network
+
+networks:
+  discourse_network:
+    driver: bridge
+
+volumes:
+  discourse_data:
